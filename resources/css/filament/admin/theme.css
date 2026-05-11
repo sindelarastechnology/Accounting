@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode comprehensive table fixes */
+.dark .fi-ta-ctn {
+    background-color: rgb(17 24 39) !important;
+}
+
+.dark .fi-ta-table thead tr {
+    background-color: transparent !important;
+}
+
+.dark .fi-ta-table thead th,
+.dark .fi-ta-table thead td {
+    background-color: rgb(31 41 55) !important;
+    color: rgb(209 213 219) !important;
+}
+
+.dark .fi-ta-table tbody tr {
+    background-color: rgb(17 24 39) !important;
+}
+
+.dark .fi-ta-table tbody tr.fi-ta-row-striped {
+    background-color: rgb(255 255 255 / 0.05) !important;
+}
+
+.dark .fi-ta-table tbody tr:hover {
+    background-color: rgb(255 255 255 / 0.08) !important;
+}
+
+.dark .fi-ta-table td {
+    color: rgb(209 213 219) !important;
+}
+
+/* Pagination, filter, and table toolbar dark mode */
+.dark .fi-ta-header-toolbar {
+    background-color: transparent !important;
+}
+
+.dark .fi-ta-filter-indicator {
+    background-color: rgb(31 41 55) !important;
+}
+
+.dark .fi-ta-pagination {
+    background-color: transparent !important;
+}
+
+/* Page content area */
+.dark .fi-body {
+    background-color: rgb(3 7 18) !important;
+}
+
+/* Card / section containers */
+.dark .fi-section {
+    background-color: rgb(17 24 39) !important;
+}
+
+.dark .fi-wi-stats-overview-card {
+    background-color: rgb(17 24 39) !important;
+}
+
+.dark .fi-modal-window {
+    background-color: rgb(17 24 39) !important;
+}
+
+/* Input fields */
+.dark .fi-input {
+    background-color: rgb(31 41 55) !important;
+    color: rgb(209 213 219) !important;
+    border-color: rgb(55 65 81) !important;
+}
+
+/* Dropdown / select menus */
+.dark .fi-dropdown-list {
+    background-color: rgb(31 41 55) !important;
+}
+
+.dark .fi-dropdown-list-item {
+    color: rgb(209 213 219) !important;
+}
+
+.dark .fi-dropdown-list-item:hover {
+    background-color: rgb(55 65 81) !important;
+}
