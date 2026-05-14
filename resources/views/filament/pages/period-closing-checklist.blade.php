@@ -51,7 +51,14 @@
 
                     {{-- Action --}}
                     <div class="flex-shrink-0 flex gap-2">
-                        @if($step['action_type'] === 'link')
+                        @php
+                            $isLink = $step['action_type'] === 'link';
+                            $requiresConfirm = $step['requires_confirmation'] ?? false;
+                            $hasSecondary = !empty($step['secondary_action_url']);
+                            $btnColor = $isCompleted ? 'success' : 'primary';
+                            $btnLabel = $isCompleted ? '✓ Selesai' : $step['action_label'];
+                        @endphp
+                        @if($isLink)
                             <x-filament::button
                                 tag="a"
                                 href="{{ $step['action_url'] }}"
@@ -60,11 +67,8 @@
                                 outlined>
                                 {{ $step['action_label'] }}
                             </x-filament::button>
-                        @elseif($step['action_type'] === 'run')
-                            @php
-                                $requiresConfirm = $step['requires_confirmation'] ?? false;
-                            @endphp
-                            @if(!empty($step['secondary_action_url']))
+                        @else
+                            @if($hasSecondary)
                                 <x-filament::button
                                     tag="a"
                                     href="{{ $step['secondary_action_url'] }}"
@@ -74,24 +78,14 @@
                                     {{ $step['secondary_action_label'] ?? 'Buka Halaman' }}
                                 </x-filament::button>
                             @endif
-                            @if($requiresConfirm)
-                                <x-filament::button
-                                    wire:click="{{ $step['action_method'] }}"
-                                    wire:confirm="Apakah Anda yakin?"
-                                    color="{{ $isCompleted ? 'success' : 'primary' }}"
-                                    size="sm"
-                                    {{ $isCompleted ? 'outlined' : '' }}>
-                                    {{ $isCompleted ? '✓ Selesai' : $step['action_label'] }}
-                                </x-filament::button>
-                            @else
-                                <x-filament::button
-                                    wire:click="{{ $step['action_method'] }}"
-                                    color="{{ $isCompleted ? 'success' : 'primary' }}"
-                                    size="sm"
-                                    {{ $isCompleted ? 'outlined' : '' }}>
-                                    {{ $isCompleted ? '✓ Selesai' : $step['action_label'] }}
-                                </x-filament::button>
-                            @endif
+                            <x-filament::button
+                                wire:click="{{ $step['action_method'] }}"
+                                wire:confirm="{{ $requiresConfirm ? 'Apakah Anda yakin?' : '' }}"
+                                color="{{ $btnColor }}"
+                                size="sm"
+                                :outlined="$isCompleted">
+                                {{ $btnLabel }}
+                            </x-filament::button>
                         @endif
                     </div>
                 </div>
